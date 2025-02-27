@@ -1,0 +1,43 @@
+.mat-drawer-container {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 100vh;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+  }
+  
+  .mat-drawer-sidenav {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+  }
+  
+  .example-sidenav {
+    padding: 20px;
+  }
+
+  .menu-btn {
+    margin: 8px;
+  }
+
+  .logo-container {
+    height: 64px;
+    min-height: 64px;
+    border-bottom: 2px solid whitesmoke;
+  }
+
+  mat-nav-list {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .mat_list_item_container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
