@@ -8,6 +8,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { User } from '../../models/user.class';
 import { FormsModule } from '@angular/forms';
+import { AsyncPipe } from '@angular/common';
+import { Firestore, collectionData, collection, addDoc } from '@angular/fire/firestore';
+import { error } from 'console';
 
 @Component({
   selector: 'app-dialog-add-user',
@@ -21,7 +24,8 @@ import { FormsModule } from '@angular/forms';
     MatIconModule,
     MatInputModule,
     MatDatepickerModule,
-    FormsModule
+    FormsModule,
+    // AsyncPipe
   ],
   providers: [provideNativeDateAdapter()],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -33,6 +37,9 @@ export class DialogAddUserComponent {
   user: User = new User();
   birthDate: Date = new Date();
 
+  firestore = inject(Firestore);
+  userCollection = collection(this.firestore, 'users');
+
   constructor() {
     this.user.birthDate = this.birthDate.getTime();
   }
@@ -42,6 +49,13 @@ export class DialogAddUserComponent {
   }
 
   addNewUser() {
-    console.log("Current user:", this.user);
+    addDoc(this.userCollection, this.user.toJSON())
+      .then((result)=> {
+        console.log(result);
+        this.onNoClick();
+      })
+      .catch((e) => {
+        console.error(e);
+      })
   }
 }
