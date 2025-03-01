@@ -28,6 +28,9 @@
     height: 64px;
     min-height: 64px;
     border-bottom: 2px solid whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   mat-nav-list {

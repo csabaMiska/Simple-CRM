@@ -8,14 +8,15 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { User } from '../../models/user.class';
 import { FormsModule } from '@angular/forms';
-import { AsyncPipe } from '@angular/common';
-import { Firestore, collectionData, collection, addDoc } from '@angular/fire/firestore';
-import { error } from 'console';
+import { AsyncPipe, CommonModule } from '@angular/common';
+import { Firestore, collection, addDoc } from '@angular/fire/firestore';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
   selector: 'app-dialog-add-user',
   standalone: true,
   imports: [
+    CommonModule,
     MatButtonModule,
     MatDialogTitle,
     MatDialogContent,
@@ -25,6 +26,7 @@ import { error } from 'console';
     MatInputModule,
     MatDatepickerModule,
     FormsModule,
+    MatProgressBarModule
     // AsyncPipe
   ],
   providers: [provideNativeDateAdapter()],
@@ -36,6 +38,7 @@ export class DialogAddUserComponent {
   readonly dialogRef = inject(MatDialogRef<DialogAddUserComponent>);
   user: User = new User();
   birthDate: Date = new Date();
+  loading: boolean = false
 
   firestore = inject(Firestore);
   userCollection = collection(this.firestore, 'users');
@@ -49,9 +52,11 @@ export class DialogAddUserComponent {
   }
 
   addNewUser() {
+    this.loading = true;
     addDoc(this.userCollection, this.user.toJSON())
-      .then((result)=> {
+      .then((result) => {
         console.log(result);
+        this.loading = false;
         this.onNoClick();
       })
       .catch((e) => {

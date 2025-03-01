@@ -1,3 +1,41 @@
+<mat-card appearance="outlined">
+    <mat-card-header>
+        <h2>Users</h2>
+    </mat-card-header>
+    <mat-card-content>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="birthday">
+                <th mat-header-cell *matHeaderCellDef> Birth day </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="zipcode">
+                <th mat-header-cell *matHeaderCellDef> Zip code</th>
+                <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="city">
+                <th mat-header-cell *matHeaderCellDef> City </th>
+                <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="address">
+                <th mat-header-cell *matHeaderCellDef> Address </th>
+                <td mat-cell *matCellDef="let element"></td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row class="mat-row-hover"  *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </mat-card-content>
+</mat-card>
+
 <button class="add-user-btn" (click)="openDialog()" mat-fab matTooltip="Add user">
     <mat-icon>add</mat-icon>
 </button>
