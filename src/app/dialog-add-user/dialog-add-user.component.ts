@@ -1,6 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogActions, MatDialogContent, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { provideNativeDateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'app-dialog-add-user',
@@ -9,8 +14,14 @@ import { MatDialogActions, MatDialogContent, MatDialogRef, MatDialogTitle } from
     MatButtonModule,
     MatDialogTitle,
     MatDialogContent,
-    MatDialogActions
+    MatDialogActions,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatDatepickerModule
   ],
+  providers: [provideNativeDateAdapter()],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './dialog-add-user.component.html',
   styleUrl: './dialog-add-user.component.scss'
 })
