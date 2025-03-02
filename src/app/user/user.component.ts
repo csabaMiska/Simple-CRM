@@ -9,6 +9,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { collection, collectionData, Firestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 export interface User {
   firstName: string;
@@ -31,7 +32,8 @@ export interface User {
     MatTooltipModule,
     MatDialogModule,
     MatCardModule,
-    MatTableModule
+    MatTableModule,
+    RouterModule
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './user.component.html',
