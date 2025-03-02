@@ -8,23 +8,14 @@
                 <th mat-header-cell *matHeaderCellDef> Name </th>
                 <td mat-cell *matCellDef="let user"> {{user.firstName}} {{user.lastName}} </td>
             </ng-container>
-            <ng-container matColumnDef="birthday">
+            <ng-container matColumnDef="email">
                 <th mat-header-cell *matHeaderCellDef> Email </th>
                 <td mat-cell *matCellDef="let user"> {{user.email}} </td>
-            </ng-container>
-            <ng-container matColumnDef="zipcode">
-                <th mat-header-cell *matHeaderCellDef> Zip code</th>
-                <td mat-cell *matCellDef="let user"> {{user.zipCode}} </td>
             </ng-container>
             <ng-container matColumnDef="city">
                 <th mat-header-cell *matHeaderCellDef> City </th>
                 <td mat-cell *matCellDef="let user"> {{user.city}} </td>
             </ng-container>
-            <ng-container matColumnDef="address">
-                <th mat-header-cell *matHeaderCellDef> Address </th>
-                <td mat-cell *matCellDef="let user"> {{user.id}} </td>
-            </ng-container>
-
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row [routerLink]="[user.id]"
             routerLinkActive="router-link-active" class="mat-row-hover" *matRowDef="let user; columns: displayedColumns;"></tr>

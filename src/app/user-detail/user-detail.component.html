@@ -1,10 +1,10 @@
 <mat-card appearance="outlined">
     <mat-card-header>
         <mat-card-title>
-            <h1>Csaba Miska</h1>
+            <h1>{{ user.firstName }} {{ user.lastName}}</h1>
         </mat-card-title>
         <mat-card-subtitle>
-            miskacs90&#64;icloud.com
+            {{ user.email }}
         </mat-card-subtitle>
         <img class="title-img" src="/img/profile.png">
     </mat-card-header>
@@ -19,11 +19,11 @@
     <mat-card-content>
         <div class="info-container">
             <p>Birthday:</p>
-            <p>28.04.1990</p>
+            <p>{{ user.birthDate }}</p>
         </div>
         <div class="info-container">
             <p>Email:</p>
-            <p>miskacs90&#64;icloud.com</p>
+            <p>{{ user.email }}</p>
         </div>
     </mat-card-content>
 </mat-card>
@@ -37,11 +37,11 @@
     <mat-card-content>
         <div class="info-container">
             <p>Street:</p>
-            <p>Wieselweg 9c</p>
+            <p>{{ user.address }}</p>
         </div>
         <div class="info-container">
             <p>City:</p>
-            <p>55442 Stromberg</p>
+            <p>{{ user.zipCode }} {{ user.city }}</p>
         </div>
     </mat-card-content>
 </mat-card>

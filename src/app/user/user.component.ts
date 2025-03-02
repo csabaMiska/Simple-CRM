@@ -15,9 +15,6 @@ export interface User {
   firstName: string;
   lastName: string;
   email: string;
-  birthDate: number;
-  address: string;
-  zipCode: number;
   city: string;
   id?: string; 
 }
@@ -43,7 +40,7 @@ export interface User {
 export class UserComponent implements OnInit {
   readonly dialog = inject(MatDialog);
   dataSource = new MatTableDataSource<User>([]);
-  displayedColumns: string[] = ['name', 'birthday', 'zipcode', 'city', 'address'];
+  displayedColumns: string[] = ['name', 'email', 'city'];
 
   private firestore = inject(Firestore);
   userCollection = collection(this.firestore, 'users');
