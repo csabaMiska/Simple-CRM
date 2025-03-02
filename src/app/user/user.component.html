@@ -6,32 +6,27 @@
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
             <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef> Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                <td mat-cell *matCellDef="let user"> {{user.firstName}} {{user.lastName}} </td>
             </ng-container>
-
-
             <ng-container matColumnDef="birthday">
-                <th mat-header-cell *matHeaderCellDef> Birth day </th>
-                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                <th mat-header-cell *matHeaderCellDef> Email </th>
+                <td mat-cell *matCellDef="let user"> {{user.email}} </td>
             </ng-container>
-
             <ng-container matColumnDef="zipcode">
                 <th mat-header-cell *matHeaderCellDef> Zip code</th>
-                <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                <td mat-cell *matCellDef="let user"> {{user.zipCode}} </td>
             </ng-container>
-
             <ng-container matColumnDef="city">
                 <th mat-header-cell *matHeaderCellDef> City </th>
-                <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                <td mat-cell *matCellDef="let user"> {{user.city}} </td>
             </ng-container>
-
             <ng-container matColumnDef="address">
                 <th mat-header-cell *matHeaderCellDef> Address </th>
-                <td mat-cell *matCellDef="let element"></td>
+                <td mat-cell *matCellDef="let user"> {{user.address}} </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row class="mat-row-hover"  *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr mat-row class="mat-row-hover" *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
     </mat-card-content>
 </mat-card>

@@ -8,7 +8,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { User } from '../../models/user.class';
 import { FormsModule } from '@angular/forms';
-import { AsyncPipe, CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Firestore, collection, addDoc } from '@angular/fire/firestore';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
@@ -27,7 +27,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatDatepickerModule,
     FormsModule,
     MatProgressBarModule
-    // AsyncPipe
   ],
   providers: [provideNativeDateAdapter()],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -40,7 +39,7 @@ export class DialogAddUserComponent {
   birthDate: Date = new Date();
   loading: boolean = false
 
-  firestore = inject(Firestore);
+  private firestore = inject(Firestore);
   userCollection = collection(this.firestore, 'users');
 
   constructor() {
@@ -55,7 +54,6 @@ export class DialogAddUserComponent {
     this.loading = true;
     addDoc(this.userCollection, this.user.toJSON())
       .then((result) => {
-        console.log(result);
         this.loading = false;
         this.onNoClick();
       })
