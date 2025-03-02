@@ -1,13 +1,19 @@
 <mat-card appearance="outlined">
     <mat-card-header>
         <mat-card-title>
-            <h1>{{ user.firstName }} {{ user.lastName}}</h1>
+            <h1>{{ (user$ | async)?.firstName }}  {{ (user$ | async)?.lastName }} </h1>
         </mat-card-title>
         <mat-card-subtitle>
-            {{ user.email }}
+            {{ (user$ | async)?.email }} 
         </mat-card-subtitle>
         <img class="title-img" src="/img/profile.png">
     </mat-card-header>
+    <mat-card-content>
+        <button mat-button>
+            <mat-icon>edit</mat-icon>
+            Edit Profile
+        </button>
+    </mat-card-content>
 </mat-card>
 
 <mat-card class="mt-16">
@@ -19,11 +25,11 @@
     <mat-card-content>
         <div class="info-container">
             <p>Birthday:</p>
-            <p>{{ user.birthDate }}</p>
+            <p>{{ (user$ | async)?.birthDate }} </p>
         </div>
         <div class="info-container">
             <p>Email:</p>
-            <p>{{ user.email }}</p>
+            <p>{{ (user$ | async)?.email }} </p>
         </div>
     </mat-card-content>
 </mat-card>
@@ -37,11 +43,11 @@
     <mat-card-content>
         <div class="info-container">
             <p>Street:</p>
-            <p>{{ user.address }}</p>
+            <p>{{ (user$ | async)?.address}} </p>
         </div>
         <div class="info-container">
             <p>City:</p>
-            <p>{{ user.zipCode }} {{ user.city }}</p>
+            <p>{{ (user$ | async)?.zipCode }} {{ (user$ | async)?.city }}</p>
         </div>
     </mat-card-content>
 </mat-card>

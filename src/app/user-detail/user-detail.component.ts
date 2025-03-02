@@ -1,49 +1,43 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute } from '@angular/router';
-import { Firestore, collection, doc, getDoc } from '@angular/fire/firestore';
-import { log } from 'console';
+import { Firestore, collection, doc, docData, getDoc } from '@angular/fire/firestore';
+import { NgZone } from '@angular/core';
 import { User } from '../../models/user.class';
+import { Observable } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 
 @Component({
   selector: 'app-user-detail',
   standalone: true,
   imports: [
-    MatCardModule
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    AsyncPipe
   ],
   templateUrl: './user-detail.component.html',
   styleUrl: './user-detail.component.scss'
 })
-export class UserDetailComponent implements OnInit {
+export class UserDetailComponent {
   private route = inject(ActivatedRoute);
   private firestore = inject(Firestore);
+  private zone = inject(NgZone);
   userCollection = collection(this.firestore, 'users');
 
-  constructor() {}
-
   userID: string = '';
-  user: User = new User();
+  user$: Observable<User | undefined> = new Observable<User>();
 
-  ngOnInit(): void {
+  constructor() {
     this.route.paramMap.subscribe(paramMap => {
       this.userID = paramMap.get('id') ?? '';
-      this.getUser();
     });
+
+    const userDocRef = doc(this.userCollection, this.userID);
+    this.user$ = docData(userDocRef) as Observable<User>;
   }
 
-  getUser() {
-    const userDocRef = doc(this.userCollection, this.userID);
-    getDoc(userDocRef)
-    .then(docSnap => {
-      if (docSnap.exists()) {
-        this.user = new User(docSnap.data());
-      } else {
-        console.log("User not found!");
-      }
-    })
-    .catch(error => {
-      console.error("Error fetching user:", error);
-    });
-  }
 }
