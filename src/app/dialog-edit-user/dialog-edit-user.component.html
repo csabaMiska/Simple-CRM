@@ -1,14 +1,14 @@
-<h2 mat-dialog-title>Add User</h2>
+<h2 mat-dialog-title>Edit Profile</h2>
 <mat-dialog-content>
-    <p>Add a new User.</p>
+    <p>Edit your Profile.</p>
     <div>
         <mat-form-field appearance="outline" class="mr-16">
             <mat-label>First Name</mat-label>
-            <input [(ngModel)]="user$.firstName" [disabled]="loading" matInput placeholder="First Name">
+            <input [(ngModel)]="user$.firstName" disabled matInput placeholder="First Name">
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Last Name</mat-label>
-            <input [(ngModel)]="user$.lastName" [disabled]="loading" matInput placeholder="Last Name">
+            <input [(ngModel)]="user$.lastName" disabled matInput placeholder="Last Name">
         </mat-form-field>
     </div>
 
@@ -22,7 +22,7 @@
     <div>
         <mat-form-field appearance="outline" class="w-100">
             <mat-label>Birth Date</mat-label>
-            <input [(ngModel)]="birthDate" (ngModelChange)="onDateChange($event)" [disabled]="loading" matInput [matDatepicker]="picker">
+            <input [ngModel]="user$.birthDate | date: 'yyyy-MM-dd'" disabled matInput [matDatepicker]="picker">
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
@@ -51,5 +51,5 @@
 
 <mat-dialog-actions>
     <button mat-button (click)="onNoClick()" [disabled]="loading">Cancel</button>
-    <button mat-button cdkFocusInitial (click)="addNewUser()" [disabled]="loading">Add</button>
+    <button mat-button cdkFocusInitial [disabled]="loading" (click)="updateUserInfos()">Save</button>
 </mat-dialog-actions>

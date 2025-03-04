@@ -10,14 +10,7 @@ import { collection, collectionData, Firestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-
-export interface User {
-  firstName: string;
-  lastName: string;
-  email: string;
-  city: string;
-  id?: string; 
-}
+import { User } from '../../interface/user.interface';
 
 @Component({
   selector: 'app-user',
